@@ -303,7 +303,7 @@ main:focus { outline: none; }
 
 /* About */
 .about .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 64px; }
-.about .photo { flex: 1 1 320px; min-width: 0; aspect-ratio: 4 / 5; background: var(--line); color: var(--ink); padding: 32px; }
+.about .photo { flex: 1 1 320px; min-width: 0; aspect-ratio: 4 / 5; }
 .about__copy { flex: 2 1 440px; min-width: 0; }
 
 /* FAQ — the +/− replaces the browser's triangle, which display: flex removes anyway. */

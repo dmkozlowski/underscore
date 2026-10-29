@@ -162,8 +162,14 @@
 
     <section id="about" class="section band--plaster about">
       <div class="wrap">
-        <!-- When the real photo goes in: <img src="..." alt="Dan ..."> and drop aria-hidden. -->
-        <div class="photo" aria-hidden="true">PHOTO — Dan at work: behind a kit, or listening in a room. Not a headshot.</div>
+        <!-- Pre-cropped to 4:5 around Dan, so object-position isn't needed. -->
+        <div class="photo">
+          <img src="images/dan-640.jpg"
+               srcset="images/dan-640.jpg 640w, images/dan-1100.jpg 1100w"
+               sizes="(max-width: 760px) 100vw, 440px"
+               width="1100" height="1375" loading="lazy"
+               alt="Dan laughing mid-conversation in a drum shop, shelves of snare drums behind him.">
+        </div>
         <div class="about__copy stack">
           <p class="eyebrow">Who's picking</p>
           <h2 class="h2">Hi, I'm Dan.</h2>

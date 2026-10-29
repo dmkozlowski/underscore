@@ -84,7 +84,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [ ] Final business name → then domain, email, socials (all on hold until the name settles)
 - [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
 - [ ] Sample sound brief: replace `[TRACK] — [ARTIST], [CITY]` rows with real or clearly fictional examples
-- [ ] Photography for the About section (hero uses an Unsplash cafe photo in `site/images/`)
+- [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The `*.pages.dev` address stays noindexed via `_headers`.
