@@ -7,11 +7,15 @@
   <meta name="description" content="Book a listening session: about an hour, in person or by video. I'll listen to your room and tell you what I'd change.">
   <!-- Pre-launch: remove at launch. -->
   <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F4ECDF">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="js/site.js" defer></script>
+  <script src="js/book.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -22,32 +26,33 @@
         <span class="stamp" aria-hidden="true"><span class="stamp__dot"></span><span class="stamp__bar"></span></span>
         <span class="wordmark">Underscore</span>
       </a>
-      <nav class="nav" aria-label="Main">
-        <a class="btn btn--line btn--small" href="/">← Back to home</a>
-      </nav>
+      <a class="btn btn--line btn--small header-cta" href="/"><span aria-hidden="true">←&nbsp;</span>Back to home</a>
     </div>
   </header>
 
-  <main id="main" class="book">
+  <main id="main" class="book" tabindex="-1">
     <div class="wrap">
       <div class="book__intro">
         <h1>Book a listening session</h1>
         <p class="lede soft">About an hour, in person or by video. I'll ask about your place and your people, listen to what you're playing now, and tell you what I'd change.</p>
-        <div class="expect">
-          <div class="expect__row"><span class="step__num">01</span><span>Pick a time that works. A few quick questions come with it.</span></div>
-          <div class="expect__row"><span class="step__num">02</span><span>Ideally we meet during a normal service, so I hear the room as it really is.</span></div>
-          <div class="expect__row"><span class="step__num">03</span><span>You get a short note afterward with my take and what working together looks like.</span></div>
-        </div>
+        <h2 class="visually-hidden">What to expect</h2>
+        <ol class="expect">
+          <li class="expect__row"><span class="step__num" aria-hidden="true">01</span><span>Pick a time that works. A few quick questions come with it.</span></li>
+          <li class="expect__row"><span class="step__num" aria-hidden="true">02</span><span>Ideally we meet during a normal service, so I hear the room as it really is.</span></li>
+          <li class="expect__row"><span class="step__num" aria-hidden="true">03</span><span>You get a short note afterward with my take and what working together looks like.</span></li>
+        </ol>
         <div class="mini-blocks" aria-hidden="true"><div></div><div></div><div></div></div>
       </div>
 
-      <!-- Cal.com inline embed. The fallback link shows until (or if) the embed loads. -->
-      <div class="scheduler" id="cal-inline">
-        <div class="scheduler__fallback">
-          <p class="lede">Loading the calendar…</p>
+      <!-- Cal.com inline embed (js/book.js). The plain link works without JS and stays until the calendar is ready. -->
+      <section class="scheduler" aria-labelledby="scheduler-title">
+        <h2 id="scheduler-title" class="visually-hidden">Pick a time</h2>
+        <div class="scheduler__fallback" id="cal-fallback">
+          <p class="lede" id="cal-status" role="status">Booking runs through Cal.com.</p>
           <a class="btn btn--solid" href="https://cal.com/daniel-kozlowski-a26gig/listening-session">Open the booking calendar</a>
         </div>
-      </div>
+        <div id="cal-inline"></div>
+      </section>
     </div>
   </main>
 
@@ -57,36 +62,5 @@
       <span>© <span data-year>2026</span> Underscore</span>
     </div>
   </footer>
-
-  <script>
-    document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
-  </script>
-
-  <!-- Cal.com embed snippet (standard loader). If Cal.com changes it, regenerate from:
-       Cal.com → Event Types → Listening session → Embed → Inline. -->
-  <script>
-    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-
-    Cal("init", "listening-session", { origin: "https://cal.com" });
-
-    // Clear the fallback once we hand the box to Cal.com.
-    document.getElementById("cal-inline").innerHTML = "";
-
-    Cal.ns["listening-session"]("inline", {
-      elementOrSelector: "#cal-inline",
-      calLink: "daniel-kozlowski-a26gig/listening-session",
-      config: { layout: "month_view" }
-    });
-
-    // Match the brand: hard edges, ink as the accent.
-    Cal.ns["listening-session"]("ui", {
-      hideEventTypeDetails: false,
-      layout: "month_view",
-      cssVarsPerTheme: { light: { "cal-brand": "#2A1D16" } }
-    });
-  </script>
-  <noscript>
-    <style>.scheduler__fallback p { display: none; }</style>
-  </noscript>
 </body>
 </html>

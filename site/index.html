@@ -7,11 +7,14 @@
   <meta name="description" content="A working session musician who chooses the music for your cafe, bar or shop. Real songs by real artists, explained in plain English. Think of it as an interior designer for sound.">
   <!-- Pre-launch: keep search engines out until the name and domain are settled. Remove at launch. -->
   <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F4ECDF">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="js/site.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -26,12 +29,13 @@
         <a href="#how">How it works</a>
         <a href="#about">About</a>
         <a href="#faq">Questions</a>
-        <a class="btn btn--solid btn--small" href="book.html">Book a listening session</a>
       </nav>
+      <!-- Shortens to "Book" on phones; aria-label keeps the full name for screen readers. -->
+      <a class="btn btn--solid btn--small header-cta" href="book.html" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero">
       <div class="wrap">
         <div class="hero__copy">
@@ -43,6 +47,7 @@
             <a class="btn btn--line" href="#how">See how it works</a>
           </div>
         </div>
+        <!-- Decorative. A real photo here can use alt="" since it's mood, not information. -->
         <div class="blocks" aria-hidden="true">
           <div></div>
           <div></div>
@@ -62,7 +67,7 @@
     <section class="section">
       <div class="wrap split">
         <h2 class="h2 h2--sm">What I actually do</h2>
-        <div class="stack lede">
+        <div class="stack lede measure">
           <p>An interior designer picks the chairs, the light and the wall color so a room feels a certain way. I do the same thing with what's coming out of your speakers.</p>
           <p class="soft">You get a full day of music that fits your place at 8am and still fits it at 10pm. It leans toward artists from your own city, and every track was picked by ear. Not by an algorithm, and never AI-generated.</p>
         </div>
@@ -71,28 +76,28 @@
 
     <section id="how" class="section band--plaster">
       <div class="wrap">
-        <div class="stack" style="max-width: 40em; gap: 16px;">
+        <div class="stack stack--tight measure">
           <h2 class="h2">How it works</h2>
           <p class="lede soft">Four steps. You do the first one with me, and I handle the rest.</p>
         </div>
-        <ol class="steps" style="list-style: none; padding: 0; margin-bottom: 0;">
+        <ol class="steps">
           <li class="step">
-            <span class="step__num">01</span>
+            <span class="step__num" aria-hidden="true">01</span>
             <h3>Listen</h3>
             <p>A listening session, in person or by video. I hear your room, your crowd and what you're going for.</p>
           </li>
           <li class="step">
-            <span class="step__num">02</span>
+            <span class="step__num" aria-hidden="true">02</span>
             <h3>Decide</h3>
             <p>A short written sound brief. Here's what I'd do, and here's why, with a reason for every choice.</p>
           </li>
           <li class="step">
-            <span class="step__num">03</span>
+            <span class="step__num" aria-hidden="true">03</span>
             <h3>Build</h3>
             <p>The music for your whole day, from open to close, set up to play on its own.</p>
           </li>
           <li class="step">
-            <span class="step__num">04</span>
+            <span class="step__num" aria-hidden="true">04</span>
             <h3>Refresh</h3>
             <p>A monthly update, so a regular never hears the same hour twice.</p>
           </li>
@@ -107,47 +112,53 @@
           <p class="lede soft">I teach music theory, so I can't help explaining myself. Your sound brief tells you why each part of the day sounds the way it does, in plain English.</p>
         </div>
         <!-- TODO: replace bracketed placeholders with a real (or clearly fictional) sample brief -->
-        <div class="brief">
-          <div class="brief__head eyebrow"><span>Sound brief — sample</span><span>[CLIENT NAME]</span></div>
-          <div class="brief__row">
-            <span class="brief__time">7–10am</span>
-            <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: e.g. quiet enough to read to, nothing with a big chorus before the second coffee.]</div></div>
-          </div>
-          <div class="brief__row">
-            <span class="brief__time">12–2pm</span>
-            <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: tempo comes up with the lunch line.]</div></div>
-          </div>
-          <div class="brief__row">
-            <span class="brief__time">After 6pm</span>
-            <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: warmer, lower, more room for conversation.]</div></div>
-          </div>
-        </div>
+        <figure class="brief" aria-labelledby="brief-title">
+          <figcaption class="brief__head eyebrow"><span id="brief-title">Sound brief — sample</span><span>[CLIENT NAME]</span></figcaption>
+          <ol class="brief__rows">
+            <li class="brief__row">
+              <span class="brief__time">7–10am</span>
+              <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: e.g. quiet enough to read to, nothing with a big chorus before the second coffee.]</div></div>
+            </li>
+            <li class="brief__row">
+              <span class="brief__time">12–2pm</span>
+              <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: tempo comes up with the lunch line.]</div></div>
+            </li>
+            <li class="brief__row">
+              <span class="brief__time">After 6pm</span>
+              <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: warmer, lower, more room for conversation.]</div></div>
+            </li>
+          </ol>
+        </figure>
       </div>
     </section>
 
     <section class="rule-top">
-      <div class="wrap promises">
-        <div class="promise">
-          <span class="promise__swatch" style="background: var(--walnut);" aria-hidden="true"></span>
-          <h3>Real artists, every track</h3>
-          <p class="soft">No AI-generated music. A person made it, and a person chose it.</p>
-        </div>
-        <div class="promise">
-          <span class="promise__swatch" style="background: var(--ochre);" aria-hidden="true"></span>
-          <h3>Local to you</h3>
-          <p class="soft">I lean toward artists from wherever you are, so your room sounds like your town.</p>
-        </div>
-        <div class="promise">
-          <span class="promise__swatch" style="background: var(--ink);" aria-hidden="true"></span>
-          <h3>Never on repeat</h3>
-          <p class="soft">It changes every month, so your regulars notice something new.</p>
+      <div class="wrap">
+        <h2 class="visually-hidden">What you can count on</h2>
+        <div class="promises">
+          <div class="promise">
+            <span class="promise__swatch promise__swatch--walnut" aria-hidden="true"></span>
+            <h3>Real artists, every track</h3>
+            <p class="soft">No AI-generated music. A person made it, and a person chose it.</p>
+          </div>
+          <div class="promise">
+            <span class="promise__swatch promise__swatch--ochre" aria-hidden="true"></span>
+            <h3>Local to you</h3>
+            <p class="soft">I lean toward artists from wherever you are, so your room sounds like your town.</p>
+          </div>
+          <div class="promise">
+            <span class="promise__swatch promise__swatch--ink" aria-hidden="true"></span>
+            <h3>Never on repeat</h3>
+            <p class="soft">It changes every month, so your regulars notice something new.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="about" class="section band--plaster about">
       <div class="wrap">
-        <div class="photo">PHOTO — Dan at work: behind a kit, or listening in a room. Not a headshot.</div>
+        <!-- When the real photo goes in: <img src="..." alt="Dan ..."> and drop aria-hidden. -->
+        <div class="photo" aria-hidden="true">PHOTO — Dan at work: behind a kit, or listening in a room. Not a headshot.</div>
         <div class="about__copy stack">
           <p class="eyebrow">Who's picking</p>
           <h2 class="h2">Hi, I'm Dan.</h2>
@@ -160,7 +171,7 @@
     <section class="section">
       <div class="wrap split">
         <h2 class="h2 h2--sm">Who it's for</h2>
-        <div class="stack lede">
+        <div class="stack lede measure">
           <p>Independent places with taste. The cafe, bar or shop where your effortlessly cool friends end up. Restaurants, hotels and shops that sweat the details, too.</p>
           <p class="soft">If you've ever winced at your own playlist, you're who I'm talking to.</p>
         </div>
@@ -170,7 +181,7 @@
     <section id="faq" class="section rule-top">
       <div class="wrap split">
         <h2 class="h2 h2--sm">Questions</h2>
-        <div class="faq">
+        <div class="faq measure">
           <details open>
             <summary>What do I need to play it?</summary>
             <!-- TODO: confirm licensing wording with Soundtrack before launch -->
@@ -196,7 +207,7 @@
 
     <section class="section band--walnut cta">
       <div class="wrap">
-        <div class="stack" style="flex: 1 1 480px; gap: 16px;">
+        <div class="stack stack--tight cta__copy">
           <h2>Let's listen to your room.</h2>
           <p class="lede">One session, no commitment. You'll leave knowing what I'd change.</p>
         </div>
@@ -219,9 +230,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
-  </script>
 </body>
 </html>

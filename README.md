@@ -12,6 +12,8 @@ python3 -m http.server 8000
 
 (Opening `index.html` directly works too, but the header logo links to `/`, which only resolves on a server.)
 
+The local server doesn't apply `site/_headers` (security headers, CSP); only Cloudflare does. After adding any third-party script, embed or font, check the deployed preview's browser console for CSP errors.
+
 ## Deploy to Cloudflare Pages
 
 **Option A, drag and drop:** Cloudflare dashboard → Workers & Pages → Create → Pages → Upload assets → drop the `site` folder.

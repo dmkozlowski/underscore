@@ -29,9 +29,22 @@ Your Brand (partner program), which bills the client separately.
 site/
   index.html   Home: hero, quote, what I do, how it works, sample brief, promises, about, who it's for, FAQ, CTA
   book.html    Booking: what to expect + Cal.com inline embed (with a plain-link fallback)
+  404.html     Not-found page (Cloudflare Pages serves it automatically). Uses root-relative paths.
   styles.css   All styles; brand tokens are CSS variables on :root
+  js/site.js   Shared JS (footer year)
+  js/book.js   Cal.com embed + fallback handling
+  _headers     Cloudflare security headers (CSP etc.). Not served publicly.
   favicon.svg  Dot-over-bar stamp
 ```
+
+## Security and accessibility rules
+
+- **No inline `<script>` or `style="..."`.** The CSP in `_headers` blocks inline scripts. JS goes in `site/js/`, styles in `styles.css`.
+- **New third-party service = update the CSP** in `_headers` (add its domain), or the browser blocks it.
+- Focus rings use `--focus`; dark bands (`.band--ink`, `.band--walnut`, footer) flip it to paper. New dark areas should do the same.
+- Decorative things get `aria-hidden="true"`. Real photos need real `alt` text (or `alt=""` if purely mood).
+- Keep one `<h1>` per page and don't skip heading levels. Use `.visually-hidden` for a heading that shouldn't show.
+- Tap targets at least 44px tall. Motion only inside `prefers-reduced-motion: no-preference`.
 
 ## Brand rules (from the brand one-sheet; don't break these)
 
@@ -74,7 +87,8 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [ ] Photography for the hero and About sections
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
-- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags, add a 404 page
+- [ ] Cal.com link returns 404 (both the event and the `daniel-kozlowski-a26gig` profile). Check the username/slug and that the event is public, then update `book.html` and `js/book.js`.
+- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The `*.pages.dev` address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the `*.pages.dev` preview before launch
 - [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail
 

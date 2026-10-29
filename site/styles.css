@@ -23,11 +23,16 @@
   --max: 1216px;
   --gutter: 32px;
   --section: 128px;
+
+  /* Focus ring color. Dark bands flip it to paper so it stays visible. */
+  --focus: var(--ink);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 body {
   margin: 0;
@@ -39,12 +44,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--ink); }
-a:hover { color: var(--walnut); }
+/* The `hidden` attribute should always win, even over display: flex. */
+[hidden] { display: none !important; }
+
+a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--walnut); text-decoration-thickness: 2px; }
 
 img { max-width: 100%; display: block; }
 
-h1, h2, h3, p { margin: 0; }
+h1, h2, h3, p, figure { margin: 0; }
+h1, h2, h3, .quote { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+::selection { background: var(--ochre); color: var(--ink); }
+
+/* Anchor jumps land with a little breathing room. */
+[id] { scroll-margin-top: 32px; }
 
 .serif { font-family: var(--serif); font-weight: 500; }
 
@@ -64,14 +83,29 @@ h1, h2, h3, p { margin: 0; }
 
 .lede { font-size: 20px; }
 .soft { color: var(--ink-soft); }
+.measure { max-width: 40em; }
+
+/* Readable by screen readers, invisible on screen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .skip {
   position: absolute; left: -9999px; top: 0;
   background: var(--ink); color: var(--paper); padding: 12px 16px;
+  --focus: var(--ink);
 }
-.skip:focus { left: 16px; top: 16px; z-index: 10; }
+.skip:focus { left: 16px; top: 16px; z-index: 10; color: var(--paper); }
 
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+/* <main> takes focus from the skip link; no ring needed on the whole page. */
+main:focus { outline: none; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -82,17 +116,23 @@ h1, h2, h3, p { margin: 0; }
   padding: 16px 32px;
   font: inherit;
   font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
   text-decoration: none;
   border: 1px solid var(--ink);
   border-radius: 0;
   cursor: pointer;
 }
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: background-color 0.15s, border-color 0.15s, color 0.15s; }
+}
+.btn:hover { text-decoration: none; }
 .btn--solid { background: var(--ink); color: var(--paper); }
 .btn--solid:hover { background: var(--walnut); border-color: var(--walnut); color: var(--paper); }
 .btn--line { background: transparent; color: var(--ink); }
 .btn--line:hover { background: var(--plaster); color: var(--ink); }
 .btn--light { background: var(--paper); color: var(--ink); border-color: var(--paper); }
-.btn--light:hover { background: var(--plaster); color: var(--ink); }
+.btn--light:hover { background: var(--plaster); border-color: var(--plaster); color: var(--ink); }
 .btn--small { min-height: 44px; padding: 12px 24px; font-size: 16px; }
 
 /* ---------- Header ---------- */
@@ -102,7 +142,7 @@ h1, h2, h3, p { margin: 0; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px 32px;
+  gap: 16px 32px;
   padding-block: 24px;
 }
 
@@ -110,6 +150,7 @@ h1, h2, h3, p { margin: 0; }
   display: flex;
   align-items: center;
   gap: 16px;
+  min-height: 44px;
   text-decoration: none;
 }
 .stamp { display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -125,19 +166,22 @@ h1, h2, h3, p { margin: 0; }
   padding-bottom: 2px;
 }
 
-.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 16px; font-weight: 500; }
-.nav a:not(.btn) { text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 32px; margin-left: auto; font-size: 16px; font-weight: 500; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
 
+/* Phones: brand + Book button on top, section links in their own row below. */
 @media (max-width: 760px) {
-  .nav a:not(.btn) { display: none; }
   .wordmark { font-size: 24px; }
+  .nav { order: 3; flex-basis: 100%; margin-left: 0; gap: 0 24px; }
+  .hide-sm { display: none; }
 }
 
 /* ---------- Sections ---------- */
 .section { padding-block: var(--section); }
 .band--plaster { background: var(--plaster); border-block: 1px solid var(--line); }
-.band--ink { background: var(--ink); color: var(--paper); }
-.band--walnut { background: var(--walnut); color: var(--paper); }
+.band--ink { background: var(--ink); color: var(--paper); --focus: var(--paper); }
+.band--walnut { background: var(--walnut); color: var(--paper); --focus: var(--paper); }
 .rule-top { border-top: 1px solid var(--line); }
 
 .split {
@@ -149,6 +193,7 @@ h1, h2, h3, p { margin: 0; }
 .split > :last-child { flex: 2 1 480px; min-width: 0; }
 
 .stack { display: flex; flex-direction: column; gap: 24px; }
+.stack--tight { gap: 16px; }
 
 .h2 { font-family: var(--serif); font-weight: 500; font-size: 48px; line-height: 1.1; }
 .h2--sm { font-size: 40px; }
@@ -208,14 +253,16 @@ h1, h2, h3, p { margin: 0; }
   font-size: clamp(32px, 4vw, 52px);
   line-height: 1.15;
 }
-.band--ink .section, .quote-band { padding-block: 96px; }
+.quote-band { padding-block: 96px; }
 
 /* Steps */
 .steps {
+  list-style: none;
+  padding: 0;
+  margin: 64px 0 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 32px;
-  margin-top: 64px;
 }
 .step { display: flex; flex-direction: column; gap: 16px; border-top: 6px solid var(--ink); padding-top: 24px; }
 .step:last-child { border-top-color: var(--ochre); }
@@ -225,11 +272,12 @@ h1, h2, h3, p { margin: 0; }
 /* Brief */
 .brief-wrap { display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start; }
 .brief-wrap > :first-child { flex: 1 1 320px; min-width: 0; }
-.brief { flex: 1 1 480px; min-width: 0; border: 1px solid var(--line); }
+.brief { flex: 1 1 480px; min-width: 0; border: 1px solid var(--line); background: var(--paper); }
 .brief__head {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
   padding: 24px 32px; border-bottom: 1px solid var(--line);
 }
+.brief__rows { list-style: none; margin: 0; padding: 0; }
 .brief__row {
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr);
@@ -243,6 +291,9 @@ h1, h2, h3, p { margin: 0; }
 .promises { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 48px; padding-block: 96px; }
 .promise { display: flex; flex-direction: column; gap: 12px; }
 .promise__swatch { width: 32px; height: 32px; }
+.promise__swatch--walnut { background: var(--walnut); }
+.promise__swatch--ochre { background: var(--ochre); }
+.promise__swatch--ink { background: var(--ink); }
 .promise h3 { font-size: 22px; font-weight: 600; }
 
 /* About */
@@ -250,30 +301,57 @@ h1, h2, h3, p { margin: 0; }
 .about .photo { flex: 1 1 320px; min-width: 0; aspect-ratio: 4 / 5; background: var(--line); color: var(--ink); padding: 32px; }
 .about__copy { flex: 2 1 440px; min-width: 0; }
 
-/* FAQ */
+/* FAQ — the +/− replaces the browser's triangle, which display: flex removes anyway. */
 .faq details { border-top: 1px solid var(--line); padding-block: 24px; }
 .faq details:last-child { border-bottom: 1px solid var(--line); }
-.faq summary { font-weight: 600; font-size: 20px; cursor: pointer; min-height: 44px; display: flex; align-items: center; }
-.faq details p { margin-top: 16px; color: var(--ink-soft); }
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  content: "+" / "";
+  flex: none;
+  width: 32px;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+}
+.faq details[open] > summary::after { content: "−"; content: "−" / ""; }
+.faq summary:hover { color: var(--walnut); }
+.faq details p { margin-top: 16px; padding-right: 56px; color: var(--ink-soft); }
 
 /* CTA band */
 .cta .wrap { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px 64px; }
+.cta__copy { flex: 1 1 480px; }
 .cta h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; }
 
 /* Footer */
-.site-footer { background: var(--ink); color: var(--plaster); font-size: 16px; }
+.site-footer { background: var(--ink); color: var(--plaster); font-size: 16px; --focus: var(--paper); }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px; padding-block: 64px; }
 .site-footer a { color: var(--paper); }
+.site-footer a:hover { color: var(--plaster); }
 .site-footer .wordmark { color: var(--paper); font-size: 32px; align-self: flex-start; }
 .footer-brand { display: flex; flex-direction: column; gap: 16px; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 8px 32px; }
+.footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; }
+.footer-links a { display: inline-block; padding-block: 8px; }
 
 /* ---------- Book page ---------- */
 .book .wrap { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 64px; padding-block: 96px var(--section); }
 .book__intro { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
-.book h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.01em; }
-.expect { border-top: 1px solid var(--line); }
+.book h1, .not-found h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.01em; }
+.expect { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .expect__row { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding-block: 24px; border-bottom: 1px solid var(--line); }
+.expect__row .step__num { padding-top: 3px; }
 .mini-blocks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 64px; }
 .mini-blocks > :nth-child(1) { background: var(--walnut); }
 .mini-blocks > :nth-child(2) { background: var(--ochre); }
@@ -289,6 +367,10 @@ h1, h2, h3, p { margin: 0; }
 }
 .scheduler__fallback { padding: 48px 32px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
 
+/* ---------- 404 ---------- */
+.not-found .wrap { padding-block: var(--section); align-items: flex-start; }
+.not-found .actions { margin-top: 8px; }
+
 @media (max-width: 600px) {
   :root { --gutter: 24px; --section: 64px; }
   .h2 { font-size: 36px; }
@@ -298,5 +380,8 @@ h1, h2, h3, p { margin: 0; }
   .blocks { flex-basis: 100%; grid-template-rows: 64px 224px 64px; }
   .brief__row { grid-template-columns: 1fr; padding-inline: 24px; }
   .brief__head { padding-inline: 24px; }
+  .faq details p { padding-right: 0; }
+  .book .wrap { padding-block: 48px var(--section); gap: 48px; }
   .scheduler { min-height: 720px; }
+  .scheduler__fallback { padding: 32px 24px; }
 }

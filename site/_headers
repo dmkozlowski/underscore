@@ -1,0 +1,22 @@
+# Cloudflare Pages response headers. Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# This file isn't served publicly; Cloudflare reads it at deploy time.
+#
+# Content-Security-Policy, in plain English:
+#   - Scripts only from this site and Cal.com. No inline <script> blocks: put JS in site/js/.
+#   - Styles from this site and Google Fonts. 'unsafe-inline' is for Cal.com's embed, which injects its own styles.
+#   - Fonts from Google Fonts. Frames (the booking calendar) from Cal.com only.
+#   - Nobody else can put this site in a frame.
+# If you add a new third-party service (analytics, a video embed, etc.), its domain has to be added here or the browser will block it.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://app.cal.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com; connect-src 'self' https://app.cal.com https://cal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Strict-Transport-Security: max-age=31536000
+
+# Keep the *.pages.dev address out of search results for good, even after launch on the real domain.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
