@@ -16,8 +16,9 @@ Your Brand (partner program), which bills the client separately.
 ## Stack (on purpose)
 
 - Plain static HTML + one CSS file. No framework, no build step, no npm. Keep it that way unless Dan asks.
-- Hosting: **Cloudflare Pages**, as its own project (separate from Dan's personal site).
-  Build command: none. Output directory: `site`.
+- Hosting: **Cloudflare Workers (static assets)**, as its own Worker named `underscore` (separate from Dan's personal site).
+  Deploys from GitHub `main` via Workers Builds. `wrangler.jsonc` at the repo root points it at `site/`; no build step.
+  Live preview: https://underscore.dmkozlowski.workers.dev
 - Booking: **Cal.com** inline embed on `book.html`
   → https://cal.com/dmkozlowski/listening-session
   Intake questions live in Cal.com's booking form, not on the site.
@@ -29,7 +30,7 @@ Your Brand (partner program), which bills the client separately.
 site/
   index.html   Home: hero, quote, what I do, how it works, sample brief, promises, about, who it's for, FAQ, CTA
   book.html    Booking: what to expect + Cal.com inline embed (with a plain-link fallback)
-  404.html     Not-found page (Cloudflare Pages serves it automatically). Uses root-relative paths.
+  404.html     Not-found page (served via not_found_handling in wrangler.jsonc). Uses root-relative paths.
   styles.css   All styles; brand tokens are CSS variables on :root
   js/site.js   Shared JS (footer year)
   js/book.js   Cal.com embed + fallback handling
@@ -87,8 +88,8 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
-- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The `*.pages.dev` address stays noindexed via `_headers`.
-- [ ] Optional: Cloudflare Access to password-protect the `*.pages.dev` preview before launch
+- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
+- [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
 - [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail
 
 ## Working with Dan

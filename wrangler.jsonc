@@ -1,0 +1,11 @@
+// Cloudflare Workers config. This isn't a build tool: it just tells Cloudflare
+// to serve the site/ folder as-is. "name" must match the Worker in the dashboard.
+{
+  "name": "underscore",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site",
+    // Serve site/404.html (with a 404 status) for any missing page.
+    "not_found_handling": "404-page"
+  }
+}

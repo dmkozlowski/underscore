@@ -14,15 +14,15 @@ python3 -m http.server 8000
 
 The local server doesn't apply `site/_headers` (security headers, CSP); only Cloudflare does. After adding any third-party script, embed or font, check the deployed preview's browser console for CSP errors.
 
-## Deploy to Cloudflare Pages
+## Deploy (Cloudflare Workers)
 
-**Option A, drag and drop:** Cloudflare dashboard → Workers & Pages → Create → Pages → Upload assets → drop the `site` folder.
+The site is a Cloudflare Worker named `underscore` that serves the `site/` folder as static files.
+`wrangler.jsonc` in the repo root tells Cloudflare which folder to serve; there's no build step.
 
-**Option B, from Git:** push this repo to GitHub, then Create → Pages → Connect to Git.
-Framework preset: None · Build command: *(blank)* · Build output directory: `site`.
+Pushing to `main` on GitHub deploys automatically (Workers Builds). Check progress in the dashboard:
+Workers & Pages → underscore → Deployments.
 
-**Option C, CLI:** `npx wrangler pages deploy site --project-name underscore`
-
-You'll get a `*.pages.dev` address. Add a custom domain later under the project's Custom domains tab.
+Live preview: https://underscore.dmkozlowski.workers.dev. Add a custom domain later under the Worker's
+Settings → Domains & Routes.
 
 See `CLAUDE.md` for brand rules, voice and open items.
