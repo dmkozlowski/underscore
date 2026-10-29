@@ -8,6 +8,21 @@
 document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
 
+// ---------- Analytics: Cloudflare Web Analytics ----------
+// Privacy-friendly: no cookies, no personal data. Off until a token is pasted in.
+// Get it from Cloudflare → Analytics & Logs → Web Analytics → your site → "JS snippet":
+// copy just the "token" value. Change the token here only; every page picks it up.
+const ANALYTICS_TOKEN = '';
+
+if (ANALYTICS_TOKEN) {
+  const beacon = document.createElement('script');
+  beacon.defer = true;
+  beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  beacon.dataset.cfBeacon = JSON.stringify({ token: ANALYTICS_TOKEN });
+  document.head.append(beacon);
+}
+
+
 // ---------- Sound brief: mark the row for the visitor's time of day ----------
 // Rows carry data-hours="start-end" in 24h local time (end not included).
 const hour = new Date().getHours();

@@ -32,10 +32,11 @@ site/
   book.html    Booking: what to expect + Cal.com inline embed (with a plain-link fallback)
   404.html     Not-found page (served via not_found_handling in wrangler.jsonc). Uses root-relative paths.
   styles.css   All styles; brand tokens are CSS variables on :root
-  js/site.js   Shared JS: footer year, scroll reveals, sound brief "Now" marker + Bandcamp players
+  js/site.js   Shared JS: footer year, analytics, scroll reveals, sound brief "Now" marker + Bandcamp players
   js/book.js   Cal.com embed + fallback handling
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
   favicon.svg  Dot-over-bar stamp
+  apple-touch-icon.png  180px stamp for iPhone home screens (regenerate if the stamp changes)
 ```
 
 ## Security and accessibility rules
@@ -105,6 +106,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
 - [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail
+- [ ] Analytics: paste the Cloudflare Web Analytics token into `ANALYTICS_TOKEN` in `js/site.js` (it's off until then). Add a new site in Web Analytics when the real domain goes live.
 
 ## Working with Dan
 

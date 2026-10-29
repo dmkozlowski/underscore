@@ -2,14 +2,14 @@
 # This file isn't served publicly; Cloudflare reads it at deploy time.
 #
 # Content-Security-Policy, in plain English:
-#   - Scripts only from this site and Cal.com. No inline <script> blocks: put JS in site/js/.
+#   - Scripts only from this site, Cal.com and Cloudflare Web Analytics. No inline <script> blocks: put JS in site/js/.
 #   - Styles from this site and Google Fonts. 'unsafe-inline' is for Cal.com's embed, which injects its own styles.
 #   - Fonts from Google Fonts. Frames from Cal.com (booking calendar) and Bandcamp (sound brief players) only.
 #   - Nobody else can put this site in a frame.
 # If you add a new third-party service (analytics, a video embed, etc.), its domain has to be added here or the browser will block it.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://app.cal.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com https://bandcamp.com; connect-src 'self' https://app.cal.com https://cal.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://app.cal.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://app.cal.com https://cal.com; frame-src https://app.cal.com https://cal.com https://bandcamp.com; connect-src 'self' https://app.cal.com https://cal.com https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
