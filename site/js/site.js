@@ -23,6 +23,50 @@ document.querySelectorAll('.brief__row[data-hours]').forEach(row => {
 });
 
 
+// ---------- Sound brief: listen buttons ----------
+// Each .brief__listen holds a plain Bandcamp link (works without JS). Here it
+// becomes a Listen button that loads Bandcamp's player only when pressed, so
+// nothing from Bandcamp loads for people who never press it. Loading a new
+// player removes the old one, so only one track plays at a time.
+// Bandcamp's player can't start on its own; it shows its own play button.
+const listens = document.querySelectorAll('.brief__listen[data-bandcamp-track]');
+
+listens.forEach(box => {
+  // The "Now" row (marked above) gets the stronger, solid button.
+  const isNow = box.closest('.brief__row.is-now');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = `btn btn--small btn--play ${isNow ? 'btn--solid' : 'btn--line'}`;
+  button.textContent = isNow ? "Listen to what's on now" : 'Listen';
+  // Accessible name starts with the visible text, so voice control ("click Listen") works.
+  button.setAttribute('aria-label', `${button.textContent}: ${box.dataset.title}`);
+  button.addEventListener('click', () => openPlayer(box));
+  box.replaceChildren(button);
+});
+
+function openPlayer(box) {
+  listens.forEach(other => { if (other !== box && other.player) closePlayer(other); });
+
+  const colors = 'bgcol=f4ecdf/linkcol=2a1d16';  // paper + ink
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://bandcamp.com/EmbeddedPlayer/track=${box.dataset.bandcampTrack}/size=small/${colors}/transparent=true/`;
+  iframe.title = `${box.dataset.title} (Bandcamp player)`;
+  iframe.className = 'brief__player';
+  iframe.loading = 'eager';
+  iframe.allow = 'autoplay';
+
+  box.player = iframe;
+  box.button = box.firstElementChild;
+  box.replaceChildren(iframe);
+  iframe.focus();
+}
+
+function closePlayer(box) {
+  box.replaceChildren(box.button);
+  box.player = null;
+}
+
+
 // ---------- Scroll reveals ----------
 // data-reveal          the element eases up into place
 // data-reveal="wipe"   a photo rises into its frame

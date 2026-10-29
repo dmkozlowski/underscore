@@ -305,6 +305,21 @@ main:focus { outline: none; }
 .brief__time, .brief__track { font-weight: 600; }
 .brief__time { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 
+.brief__body { display: flex; flex-direction: column; gap: 0; }
+.brief__listen { margin-top: 16px; }
+.brief__listen a { font-weight: 600; }
+
+/* Play triangle drawn in CSS (a ▶ character can turn into an emoji on phones). */
+.btn--play { gap: 12px; }
+.btn--play::before {
+  content: "";
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent currentColor;
+}
+.brief__player { display: block; width: 100%; max-width: 400px; height: 42px; border: 0; }
+
 /* js/site.js marks the row that matches the visitor's time of day. */
 .brief__row.is-now { background: var(--plaster); box-shadow: inset 4px 0 0 var(--ochre); }
 .brief__now {

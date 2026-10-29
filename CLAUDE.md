@@ -32,7 +32,7 @@ site/
   book.html    Booking: what to expect + Cal.com inline embed (with a plain-link fallback)
   404.html     Not-found page (served via not_found_handling in wrangler.jsonc). Uses root-relative paths.
   styles.css   All styles; brand tokens are CSS variables on :root
-  js/site.js   Shared JS: footer year, scroll reveals, sound brief "Now" marker
+  js/site.js   Shared JS: footer year, scroll reveals, sound brief "Now" marker + Bandcamp players
   js/book.js   Cal.com embed + fallback handling
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
   favicon.svg  Dot-over-bar stamp
@@ -55,6 +55,11 @@ Scroll reveals are opt-in attributes handled by `js/site.js`:
 `data-reveal-stagger` on a parent (children arrive in sequence). Only below-the-fold elements get hidden,
 and nothing hides without JS or with reduced motion on. Sound brief rows take `data-hours="start-end"`
 (24h) so the visitor's current time of day gets a "Now" marker.
+
+Sound brief tracks: wrap a plain Bandcamp link in `<div class="brief__listen" data-bandcamp-track="ID" data-title="Song by Artist">`.
+JS turns it into a Listen button that loads Bandcamp's player only on click (one plays at a time). The ID is the
+`track=NNNN` number in the track's Share/Embed code. Use streaming embeds only, never self-hosted audio files
+(licensing), unless an artist gives written permission.
 
 ## Brand rules (from the brand one-sheet; don't break these)
 
