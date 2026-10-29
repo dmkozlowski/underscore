@@ -32,7 +32,7 @@ site/
   book.html    Booking: what to expect + Cal.com inline embed (with a plain-link fallback)
   404.html     Not-found page (served via not_found_handling in wrangler.jsonc). Uses root-relative paths.
   styles.css   All styles; brand tokens are CSS variables on :root
-  js/site.js   Shared JS (footer year)
+  js/site.js   Shared JS: footer year, scroll reveals, sound brief "Now" marker
   js/book.js   Cal.com embed + fallback handling
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
   favicon.svg  Dot-over-bar stamp
@@ -46,6 +46,15 @@ site/
 - Decorative things get `aria-hidden="true"`. Real photos need real `alt` text (or `alt=""` if purely mood).
 - Keep one `<h1>` per page and don't skip heading levels. Use `.visually-hidden` for a heading that shouldn't show.
 - Tap targets at least 44px tall. Motion only inside `prefers-reduced-motion: no-preference`.
+
+## Motion
+
+Slow and settled, never bouncy (`--ease` in `styles.css`). Hero/book/404 load-ins are CSS only.
+Scroll reveals are opt-in attributes handled by `js/site.js`:
+`data-reveal` (ease up), `data-reveal="wipe"` (photo rises into frame), `data-reveal="words"` (word by word),
+`data-reveal-stagger` on a parent (children arrive in sequence). Only below-the-fold elements get hidden,
+and nothing hides without JS or with reduced motion on. Sound brief rows take `data-hours="start-end"`
+(24h) so the visitor's current time of day gets a "Now" marker.
 
 ## Brand rules (from the brand one-sheet; don't break these)
 

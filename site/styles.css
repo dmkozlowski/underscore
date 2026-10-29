@@ -26,6 +26,9 @@
 
   /* Focus ring color. Dark bands flip it to paper so it stays visible. */
   --focus: var(--ink);
+
+  /* Motion: quick to start, slow to settle. Nothing bounces. */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -124,7 +127,8 @@ main:focus { outline: none; }
   cursor: pointer;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .btn { transition: background-color 0.15s, border-color 0.15s, color 0.15s; }
+  .btn { transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.1s; }
+  .btn:active { transform: translateY(1px); }
 }
 .btn:hover { text-decoration: none; }
 .btn--solid { background: var(--ink); color: var(--paper); }
@@ -269,8 +273,16 @@ main:focus { outline: none; }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 32px;
 }
-.step { display: flex; flex-direction: column; gap: 16px; border-top: 6px solid var(--ink); padding-top: 24px; }
-.step:last-child { border-top-color: var(--ochre); }
+/* The bar on top of each step is a ::before (not a border) so it can fill in on scroll. */
+.step { position: relative; display: flex; flex-direction: column; gap: 16px; padding-top: 30px; }
+.step::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--ink);
+  transform-origin: left;
+}
+.step:last-child::before { background: var(--ochre); }
 .step__num { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; color: var(--ink-soft); }
 .step h3 { font-family: var(--serif); font-weight: 500; font-size: 32px; }
 
@@ -291,6 +303,19 @@ main:focus { outline: none; }
 }
 .brief__row + .brief__row { border-top: 1px solid var(--line); }
 .brief__time, .brief__track { font-weight: 600; }
+.brief__time { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+/* js/site.js marks the row that matches the visitor's time of day. */
+.brief__row.is-now { background: var(--plaster); box-shadow: inset 4px 0 0 var(--ochre); }
+.brief__now {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 2px 8px;
+}
 
 /* Promises */
 .promises { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 48px; padding-block: 96px; }
@@ -306,32 +331,35 @@ main:focus { outline: none; }
 .about .photo { flex: 1 1 320px; min-width: 0; aspect-ratio: 4 / 5; }
 .about__copy { flex: 2 1 440px; min-width: 0; }
 
-/* FAQ — the +/− replaces the browser's triangle, which display: flex removes anyway. */
+/* FAQ — a drawn +/− replaces the browser's triangle (display: flex removes it anyway).
+   Two bars: ::after is the horizontal one, ::before the vertical one that turns flat when open. */
 .faq details { border-top: 1px solid var(--line); padding-block: 24px; }
 .faq details:last-child { border-bottom: 1px solid var(--line); }
 .faq summary {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
   min-height: 44px;
+  padding-right: 56px;
   font-weight: 600;
   font-size: 20px;
   cursor: pointer;
   list-style: none;
 }
 .faq summary::-webkit-details-marker { display: none; }
+.faq summary::before,
 .faq summary::after {
-  content: "+";
-  content: "+" / "";
-  flex: none;
-  width: 32px;
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1;
-  text-align: center;
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 16px;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
 }
-.faq details[open] > summary::after { content: "−"; content: "−" / ""; }
+.faq summary::before { transform: rotate(90deg); }
+.faq details[open] > summary::before { transform: rotate(0deg); }
 .faq summary:hover { color: var(--walnut); }
 .faq details p { margin-top: 16px; padding-right: 56px; color: var(--ink-soft); }
 
@@ -375,6 +403,81 @@ main:focus { outline: none; }
 /* ---------- 404 ---------- */
 .not-found .wrap { padding-block: var(--section); align-items: flex-start; }
 .not-found .actions { margin-top: 8px; }
+
+/* ---------- Motion ----------
+   All of it sits behind prefers-reduced-motion. Load animations are CSS only;
+   scroll reveals need js/site.js to add .reveal (and .is-in once on screen),
+   so without JS everything is simply visible. */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Hero on load: copy rises, color blocks slide into place, photo rises into its frame. */
+  .hero__copy > *, .book__intro > *, .not-found .wrap > * { animation: rise 0.8s var(--ease) both; }
+  .hero__copy > :nth-child(2), .book__intro > :nth-child(2), .not-found .wrap > :nth-child(2) { animation-delay: 0.08s; }
+  .hero__copy > :nth-child(3), .book__intro > :nth-child(3), .not-found .wrap > :nth-child(3) { animation-delay: 0.16s; }
+  .hero__copy > :nth-child(4), .book__intro > :nth-child(n+4), .not-found .wrap > :nth-child(4) { animation-delay: 0.24s; }
+
+  .blocks > *, .mini-blocks > * { animation: lay-in 0.9s var(--ease) both; transform-origin: left; }
+  .blocks > :nth-child(2), .blocks > :nth-child(5) { transform-origin: right; }
+  .blocks > :nth-child(1) { animation-delay: 0.15s; }
+  .blocks > :nth-child(2) { animation-delay: 0.25s; }
+  .blocks > :nth-child(4) { animation-delay: 0.5s; }
+  .blocks > :nth-child(5) { animation-delay: 0.6s; }
+  .mini-blocks > :nth-child(2) { animation-delay: 0.1s; }
+  .mini-blocks > :nth-child(3) { animation-delay: 0.2s; }
+
+  .blocks > .photo { animation: wipe-up 1.1s var(--ease) 0.3s both; }
+  .blocks .photo img { animation: settle 1.8s var(--ease) 0.3s both; }
+
+  /* Scroll reveals (classes added by js/site.js) */
+  .reveal { opacity: 0; transform: translateY(24px); }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .reveal--wipe, .reveal--wipe.is-in { opacity: 1; transform: none; }
+  .reveal--wipe { clip-path: inset(100% 0 0 0); }
+  .reveal--wipe.is-in { clip-path: inset(0); transition: clip-path 1.1s var(--ease); }
+
+  .reveal--words, .reveal--words.is-in { opacity: 1; transform: none; }
+  .reveal--words .word { display: inline-block; opacity: 0; transform: translateY(0.35em); }
+  .reveal--words.is-in .word {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    transition-delay: calc(var(--i) * 70ms);
+  }
+
+  /* Step bars fill left to right, just after their step appears. */
+  .step.reveal::before { transform: scaleX(0); }
+  .step.reveal.is-in::before {
+    transform: scaleX(1);
+    transition: transform 0.9s var(--ease);
+    transition-delay: calc(var(--delay, 0ms) + 200ms);
+  }
+
+  /* FAQ: the + turns into a −, and answers open smoothly where supported. */
+  .faq summary::before { transition: transform 0.3s var(--ease); }
+  .faq details { interpolate-size: allow-keywords; }
+  .faq details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.35s var(--ease), content-visibility 0.35s allow-discrete;
+  }
+  .faq details[open]::details-content { block-size: auto; }
+}
+
+@keyframes rise    { from { opacity: 0; transform: translateY(16px); } }
+@keyframes lay-in  { from { transform: scaleX(0); } }
+@keyframes wipe-up { from { clip-path: inset(100% 0 0 0); } }
+@keyframes settle  { from { transform: scale(1.08); } }
+
+/* Printing shouldn't depend on having scrolled past everything. */
+@media print {
+  .reveal, .reveal .word { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+}
 
 @media (max-width: 600px) {
   :root { --gutter: 24px; --section: 64px; }

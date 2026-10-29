@@ -65,12 +65,12 @@
 
     <section class="band--ink quote-band">
       <div class="wrap">
-        <p class="quote">Most places just play music. Yours should sound like someone decided.</p>
+        <p class="quote" data-reveal="words">Most places just play music. Yours should sound like someone decided.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="wrap split">
+      <div class="wrap split" data-reveal-stagger>
         <h2 class="h2 h2--sm">What I actually do</h2>
         <div class="stack lede measure">
           <p>An interior designer picks the chairs, the light and the wall color so a room feels a certain way. I do the same thing with what's coming out of your speakers.</p>
@@ -81,11 +81,11 @@
 
     <section id="how" class="section band--plaster">
       <div class="wrap">
-        <div class="stack stack--tight measure">
+        <div class="stack stack--tight measure" data-reveal>
           <h2 class="h2">How it works</h2>
           <p class="lede soft">Four steps. You do the first one with me, and I handle the rest.</p>
         </div>
-        <ol class="steps">
+        <ol class="steps" data-reveal-stagger>
           <li class="step">
             <span class="step__num" aria-hidden="true">01</span>
             <h3>Listen</h3>
@@ -112,23 +112,23 @@
 
     <section class="section">
       <div class="wrap brief-wrap">
-        <div class="stack">
+        <div class="stack" data-reveal>
           <h2 class="h2">Every song has a reason</h2>
           <p class="lede soft">I teach music theory, so I can't help explaining myself. Your sound brief tells you why each part of the day sounds the way it does, in plain English.</p>
         </div>
         <!-- TODO: replace bracketed placeholders with a real (or clearly fictional) sample brief -->
-        <figure class="brief" aria-labelledby="brief-title">
+        <figure class="brief" aria-labelledby="brief-title" data-reveal>
           <figcaption class="brief__head eyebrow"><span id="brief-title">Sound brief — sample</span><span>[CLIENT NAME]</span></figcaption>
-          <ol class="brief__rows">
-            <li class="brief__row">
+          <ol class="brief__rows" data-reveal-stagger>
+            <li class="brief__row" data-hours="7-10">
               <span class="brief__time">7–10am</span>
               <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: e.g. quiet enough to read to, nothing with a big chorus before the second coffee.]</div></div>
             </li>
-            <li class="brief__row">
+            <li class="brief__row" data-hours="12-14">
               <span class="brief__time">12–2pm</span>
               <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: tempo comes up with the lunch line.]</div></div>
             </li>
-            <li class="brief__row">
+            <li class="brief__row" data-hours="18-24">
               <span class="brief__time">After 6pm</span>
               <div><div class="brief__track">[TRACK] — [ARTIST], [CITY]</div><div class="soft">[Why: warmer, lower, more room for conversation.]</div></div>
             </li>
@@ -140,7 +140,7 @@
     <section class="rule-top">
       <div class="wrap">
         <h2 class="visually-hidden">What you can count on</h2>
-        <div class="promises">
+        <div class="promises" data-reveal-stagger>
           <div class="promise">
             <span class="promise__swatch promise__swatch--walnut" aria-hidden="true"></span>
             <h3>Real artists, every track</h3>
@@ -163,14 +163,14 @@
     <section id="about" class="section band--plaster about">
       <div class="wrap">
         <!-- Pre-cropped to 4:5 around Dan, so object-position isn't needed. -->
-        <div class="photo">
+        <div class="photo" data-reveal="wipe">
           <img src="images/dan-640.jpg"
                srcset="images/dan-640.jpg 640w, images/dan-1100.jpg 1100w"
                sizes="(max-width: 760px) 100vw, 440px"
                width="1100" height="1375" loading="lazy"
                alt="Dan laughing mid-conversation in a drum shop, shelves of snare drums behind him.">
         </div>
-        <div class="about__copy stack">
+        <div class="about__copy stack" data-reveal>
           <p class="eyebrow">Who's picking</p>
           <h2 class="h2">Hi, I'm Dan.</h2>
           <p class="lede">I've spent my career as a session drummer and percussionist — 200+ recording sessions, major-label records, 100M+ streams. I also teach music theory at Belmont University.</p>
@@ -180,7 +180,7 @@
     </section>
 
     <section class="section">
-      <div class="wrap split">
+      <div class="wrap split" data-reveal-stagger>
         <h2 class="h2 h2--sm">Who it's for</h2>
         <div class="stack lede measure">
           <p>Independent places with taste. The cafe, bar or shop where your effortlessly cool friends end up. Restaurants, hotels and shops that sweat the details, too.</p>
@@ -190,7 +190,7 @@
     </section>
 
     <section id="faq" class="section rule-top">
-      <div class="wrap split">
+      <div class="wrap split" data-reveal-stagger>
         <h2 class="h2 h2--sm">Questions</h2>
         <div class="faq measure">
           <details open>
@@ -217,7 +217,7 @@
     </section>
 
     <section class="section band--walnut cta">
-      <div class="wrap">
+      <div class="wrap" data-reveal-stagger>
         <div class="stack stack--tight cta__copy">
           <h2>Let's listen to your room.</h2>
           <p class="lede">One session, no commitment. You'll leave knowing what I'd change.</p>
