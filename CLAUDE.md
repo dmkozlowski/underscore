@@ -98,7 +98,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 
 - [ ] Final business name → then domain, email, socials (all on hold until the name settles)
 - [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
-- [ ] Sample sound brief: tracks are in (Katie Pruitt, Medium Build, Allison Young). Still need Dan's "why" line for each row, and a client name for `[CLIENT NAME]`
+- [ ] Sample sound brief: tracks and reasons are in. Still need a client name for `[CLIENT NAME]`
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
