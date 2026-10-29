@@ -37,6 +37,10 @@ site/
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
   favicon.svg  Dot-over-bar stamp
   apple-touch-icon.png  180px stamp for iPhone home screens (regenerate if the stamp changes)
+  notes/index.html      Notes list (newest first)
+  notes/*.html          One page per note; served without .html (e.g. /notes/can-i-play-spotify-in-my-cafe)
+templates/
+  note.html    Starting point for a new note. Lives outside site/, so it's never published.
 ```
 
 ## Security and accessibility rules
@@ -90,9 +94,16 @@ with great taste who happens to be the expert. First person ("I"), contractions,
 - **Never use:** curated experience, elevate, immersive, vibe-driven, bespoke soundscape. Also skip
   generic marketing filler (seamless, unlock, curated, solutions).
 
+## Notes (the "blog")
+
+Called Notes on purpose: evergreen, no dates shown, written only when there's something to say.
+New note: copy `templates/note.html` to `site/notes/<short-title-with-dashes>.html`, fill in every [bracket],
+then add it to the top of the list in `site/notes/index.html` and to the Notes list on `site/index.html` (up to three).
+Pages in `notes/` use root-relative paths (`/styles.css`, `/js/site.js`). Writing is Dan's; don't draft posts for him.
+
 ## Renaming
 
-The name appears as plain text. When it changes, find-and-replace `Underscore` across `site/`
+The name appears as plain text. When it changes, find-and-replace `Underscore` across `site/` and `templates/`
 (titles, `aria-label`s, `.wordmark`, footer). Rethink the stamp if the new name doesn't suit it.
 
 ## Open items (leave placeholders until Dan supplies the real thing)
@@ -102,6 +113,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
+- [ ] First note (draft at `site/notes/can-i-play-spotify-in-my-cafe.html`): Dan writes it; confirm licensing facts with Soundtrack first. Also fill its one-line summary on `notes/index.html` and `index.html`.
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch

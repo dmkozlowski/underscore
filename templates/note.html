@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+  NOTE TEMPLATE (not published: it lives outside site/).
+  1. Copy to site/notes/<short-title-with-dashes>.html  e.g. what-bpm-does-to-a-room.html
+  2. Fill in every [bracket]: <title>, description, heading, lede, body.
+  3. Add it to the top of the list in site/notes/index.html, and to the Notes list on site/index.html.
+  4. Commit and push. It's live at /notes/<short-title-with-dashes>
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Note title] — Underscore</title>
+  <!-- TODO: one sentence that answers the question; this is what Google shows under the title. -->
+  <meta name="description" content="[One-sentence answer to the question, for search results.]">
+  <!-- Pre-launch: remove at launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F4ECDF">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Underscore, home">
+        <span class="stamp" aria-hidden="true"><span class="stamp__dot"></span><span class="stamp__bar"></span></span>
+        <span class="wordmark">Underscore</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#about">About</a>
+        <a href="/#faq">Questions</a>
+        <a href="/notes/">Notes</a>
+      </nav>
+      <a class="btn btn--solid btn--small header-cta" href="/book.html" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article>
+      <div class="wrap note__head">
+        <div class="stack">
+          <p class="eyebrow"><a href="/notes/">Notes</a></p>
+          <h1>[Note title]</h1>
+          <p class="lede soft">[The answer or point in one or two sentences. Decide first, then explain below.]</p>
+        </div>
+      </div>
+
+      <div class="wrap note__body">
+        <div class="prose">
+          <p>[Opening paragraph.]</p>
+
+          <h2>[Section heading]</h2>
+          <p>[Paragraph.]</p>
+
+          <h2>[Section heading]</h2>
+          <p>[Paragraph.]</p>
+          <ul>
+            <li>[List item]</li>
+            <li>[List item]</li>
+          </ul>
+
+          <blockquote>[Optional pull line.]</blockquote>
+
+          <h2>What I'd do</h2>
+          <p>[Your recommendation, then the why.]</p>
+
+          <!-- To play a track here, copy a .brief__listen block from the sound brief on index.html. -->
+        </div>
+      </div>
+    </article>
+
+    <section class="section band--walnut cta">
+      <div class="wrap" data-reveal-stagger>
+        <div class="stack stack--tight cta__copy">
+          <h2>Let's listen to your room.</h2>
+          <p class="lede">One session, no commitment. You'll leave knowing what I'd change.</p>
+        </div>
+        <a class="btn btn--light" href="/book.html">Book a listening session</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Music for places people want to come back to.</span>
+      <span>© <span data-year>2026</span> Underscore</span>
+    </div>
+  </footer>
+</body>
+</html>
