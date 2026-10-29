@@ -19,7 +19,7 @@ Your Brand (partner program), which bills the client separately.
 - Hosting: **Cloudflare Pages**, as its own project (separate from Dan's personal site).
   Build command: none. Output directory: `site`.
 - Booking: **Cal.com** inline embed on `book.html`
-  → https://cal.com/daniel-kozlowski-a26gig/listening-session
+  → https://cal.com/dmkozlowski/listening-session
   Intake questions live in Cal.com's booking form, not on the site.
 - Budget rule: free tiers wherever possible until client volume justifies consolidating.
 
@@ -87,7 +87,6 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [ ] Photography for the hero and About sections
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
-- [ ] Cal.com link returns 404 (both the event and the `daniel-kozlowski-a26gig` profile). Check the username/slug and that the event is public, then update `book.html` and `js/book.js`.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The `*.pages.dev` address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the `*.pages.dev` preview before launch
 - [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail

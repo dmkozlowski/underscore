@@ -12,7 +12,7 @@ Cal("init", NS, { origin: "https://cal.com" });
 
 Cal.ns[NS]("inline", {
   elementOrSelector: "#cal-inline",
-  calLink: "daniel-kozlowski-a26gig/listening-session",
+  calLink: "dmkozlowski/listening-session",
   config: { layout: "month_view", theme: "light" }
 });
 
