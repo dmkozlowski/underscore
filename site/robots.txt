@@ -1,4 +1,4 @@
-# Search engines may crawl everything. (Pages still carry a noindex tag until launch.)
+# Search engines may crawl everything. The 404 page asks not to be indexed.
 User-agent: *
 Allow: /
 

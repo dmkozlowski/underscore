@@ -135,9 +135,10 @@ The name appears as plain text. When it changes, find-and-replace `Roomtone` acr
 - [x] Two-factor login on Cloudflare, name.com and GitHub. Keep the name.com transfer lock on.
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
-- [ ] Confirm with Soundtrack (meeting the week of Nov 2, 2026): licensing wording (FAQ answer marked with a TODO comment), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
+- [ ] Confirm with Soundtrack (meeting the week of Nov 2, 2026): licensing wording (live FAQ answer, marked with a TODO comment), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
-- [ ] At launch (after the Soundtrack meeting): remove `<meta name="robots" content="noindex, nofollow">` from every page and `templates/note.html`, then submit `https://roomtone.design/sitemap.xml` in Google Search Console. Social tags, canonical URLs, structured data, robots.txt and the sitemap are done. The workers.dev address stays noindexed via `_headers`.
+- [x] Launched Oct 30, 2026: noindex removed (the 404 page keeps it). Submit `https://roomtone.design/sitemap.xml` in Google Search Console.
+  The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
 - [x] Analytics: Cloudflare Web Analytics for roomtone.design; the token is in `ANALYTICS_TOKEN` in `js/site.js`.
 
