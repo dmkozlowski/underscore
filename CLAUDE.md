@@ -38,6 +38,9 @@ site/
   js/site.js   Shared JS: footer year, analytics, scroll reveals, sound brief "Now" marker + Bandcamp players
   js/book.js   Cal.com embed + fallback handling
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
+  robots.txt   Lets search engines crawl everything; points to the sitemap
+  sitemap.xml  Every public page (add new notes here)
+  images/og-roomtone.jpg  1200x630 image for link previews
   favicon.svg  The floor-plan mark
   apple-touch-icon.png  180px mark for iPhone home screens (regenerate if the mark changes)
   notes/index.html      Notes list (newest first)
@@ -52,6 +55,7 @@ templates/
 ## Security and accessibility rules
 
 - **No inline `<script>` or `style="..."`.** The CSP in `_headers` blocks inline scripts. JS goes in `site/js/`, styles in `styles.css`.
+  The one exception is `<script type="application/ld+json">` (structured data for search engines): it's data, not code, so the CSP doesn't block it.
 - **New third-party service = update the CSP** in `_headers` (add its domain), or the browser blocks it.
 - Focus rings use `--focus`; dark bands (`.band--ink`, `.band--walnut`, footer) flip it to paper. New dark areas should do the same.
 - Decorative things get `aria-hidden="true"`. Real photos need real `alt` text (or `alt=""` if purely mood).
@@ -107,6 +111,7 @@ with great taste who happens to be the expert. First person ("I"), contractions,
 Called Notes on purpose: evergreen, no dates shown, written only when there's something to say.
 New note: copy `templates/note.html` to `site/notes/<short-title-with-dashes>.html`, fill in every [bracket],
 then add it to the top of the list in `site/notes/index.html` and to the Notes list on `site/index.html` (up to three).
+Also add its URL to `site/sitemap.xml`.
 Pages in `notes/` use root-relative paths (`/styles.css`, `/js/site.js`). Writing is Dan's; don't draft posts for him.
 
 ## Renaming
@@ -118,13 +123,19 @@ The name appears as plain text. When it changes, find-and-replace `Roomtone` acr
 
 - [x] Name and domain: Roomtone, roomtone.design
 - [ ] Email and socials for Roomtone
-- [ ] Later: redirect www to the bare domain (Cloudflare redirect rule); if roomtone.music is added, redirect one domain to the other
+- [x] www.roomtone.design 301-redirects to roomtone.design (a Redirect Rule on the zone, in the Cloudflare dashboard, not in this repo)
+- [ ] Later: if roomtone.music is added, redirect one domain to the other the same way
+- [x] Zone hardening (Cloudflare dashboard, not this repo): Always Use HTTPS on, minimum TLS 1.2, DNSSEC on
+- [ ] DNSSEC: add the DS record at name.com (key tag 2371, algorithm 13, digest type 2; digest in Cloudflare → DNS → Settings)
+- [ ] Email: the domain publishes "sends no mail" records (SPF `v=spf1 -all`, DMARC `p=reject`, empty DKIM).
+  When setting up Email Routing or sending mail as @roomtone.design, update the SPF record and remove the empty DKIM wildcard first.
+- [ ] Turn on two-factor login for Cloudflare, name.com and GitHub; keep the name.com transfer lock on
 - [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
-- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
+- [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from every page and `templates/note.html`, then submit `https://roomtone.design/sitemap.xml` in Google Search Console. Social tags, canonical URLs, structured data, robots.txt and the sitemap are done. The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
 - [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail
 - [ ] Analytics: paste the Cloudflare Web Analytics token into `ANALYTICS_TOKEN` in `js/site.js` (it's off until then). Add a new site in Web Analytics when the real domain goes live.

@@ -1,0 +1,5 @@
+# Search engines may crawl everything. (Pages still carry a noindex tag until launch.)
+User-agent: *
+Allow: /
+
+Sitemap: https://roomtone.design/sitemap.xml

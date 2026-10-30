@@ -3,8 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Roomtone — Music for places people want to come back to</title>
-  <meta name="description" content="A working session musician who chooses the music for your cafe, bar or shop. Real songs by real artists, explained in plain English. Think of it as an interior designer for sound.">
+  <title>Roomtone — Background music for cafes, bars and shops</title>
+  <meta name="description" content="A Nashville session musician who picks the music for your cafe, bar or shop. Real songs by real artists, chosen for your room. Anywhere in the US.">
+  <link rel="canonical" href="https://roomtone.design/">
+  <!-- Link previews (iMessage, Instagram, LinkedIn, etc.) -->
+  <meta property="og:site_name" content="Roomtone">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://roomtone.design/">
+  <meta property="og:title" content="Roomtone — Background music for cafes, bars and shops">
+  <meta property="og:description" content="A Nashville session musician who picks the music for your cafe, bar or shop. Real songs by real artists, chosen for your room. Anywhere in the US.">
+  <meta property="og:image" content="https://roomtone.design/images/og-roomtone.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="People talking and working in a busy, warmly lit cafe.">
+  <meta name="twitter:card" content="summary_large_image">
   <!-- Pre-launch: keep search engines out until the name and domain are settled. Remove at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light">
@@ -16,6 +28,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="js/site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Roomtone",
+    "url": "https://roomtone.design/",
+    "logo": "https://roomtone.design/apple-touch-icon.png",
+    "image": "https://roomtone.design/images/og-roomtone.jpg",
+    "description": "A Nashville session musician who picks the music for your cafe, bar or shop. Real songs by real artists, chosen for your room. Anywhere in the US.",
+    "slogan": "Music for places people want to come back to.",
+    "founder": {
+      "@type": "Person",
+      "name": "Dan Kozlowski",
+      "url": "https://roomtone.design/#about"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nashville",
+      "addressRegion": "TN",
+      "addressCountry": "US"
+    }
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -33,7 +72,7 @@
         <a href="/notes/">Notes</a>
       </nav>
       <!-- Shortens to "Book" on phones; aria-label keeps the full name for screen readers. -->
-      <a class="btn btn--solid btn--small header-cta" href="book.html" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
+      <a class="btn btn--solid btn--small header-cta" href="/book" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
     </div>
   </header>
 
@@ -45,7 +84,7 @@
           <h1>Music for places people want to come back to.</h1>
           <p class="hero__sub lede soft">I'm a working session musician. I figure out what your place is about, then choose real songs by real artists that make it feel that way, all day long.</p>
           <div class="actions">
-            <a class="btn btn--solid" href="book.html">Book a listening session</a>
+            <a class="btn btn--solid" href="/book">Book a listening session</a>
             <a class="btn btn--line" href="#how">See how it works</a>
           </div>
         </div>
@@ -275,7 +314,7 @@
           <h2>Let's listen to your room.</h2>
           <p class="lede">One session, no commitment. You'll leave knowing what I'd change.</p>
         </div>
-        <a class="btn btn--light" href="book.html">Book a listening session</a>
+        <a class="btn btn--light" href="/book">Book a listening session</a>
       </div>
     </section>
   </main>

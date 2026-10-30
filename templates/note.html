@@ -3,8 +3,10 @@
   NOTE TEMPLATE (not published: it lives outside site/).
   1. Copy to site/notes/<short-title-with-dashes>.html  e.g. what-bpm-does-to-a-room.html
   2. Fill in every [bracket]: <title>, description, heading, lede, body.
+     Replace [slug] (4 places) with the file name minus .html, and copy the description into og:description.
   3. Add it to the top of the list in site/notes/index.html, and to the Notes list on site/index.html.
-  4. Commit and push. It's live at /notes/<short-title-with-dashes>
+  4. Add its URL to site/sitemap.xml.
+  5. Commit and push. It's live at /notes/<short-title-with-dashes>
 -->
 <html lang="en">
 <head>
@@ -13,6 +15,18 @@
   <title>[Note title] — Roomtone</title>
   <!-- TODO: one sentence that answers the question; this is what Google shows under the title. -->
   <meta name="description" content="[One-sentence answer to the question, for search results.]">
+  <link rel="canonical" href="https://roomtone.design/notes/[slug]">
+  <!-- Link previews (iMessage, Instagram, LinkedIn, etc.) -->
+  <meta property="og:site_name" content="Roomtone">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://roomtone.design/notes/[slug]">
+  <meta property="og:title" content="[Note title]">
+  <meta property="og:description" content="[Same sentence as the description above.]">
+  <meta property="og:image" content="https://roomtone.design/images/og-roomtone.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="People talking and working in a busy, warmly lit cafe.">
+  <meta name="twitter:card" content="summary_large_image">
   <!-- Pre-launch: remove at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light">
@@ -24,6 +38,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script src="/js/site.js" defer></script>
+  <!-- For search engines: data, not code, so the CSP doesn't block it. Fill in the same title, description and [slug]. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[Note title]",
+    "description": "[Same sentence as the description above.]",
+    "url": "https://roomtone.design/notes/[slug]",
+    "mainEntityOfPage": "https://roomtone.design/notes/[slug]",
+    "image": "https://roomtone.design/images/og-roomtone.jpg",
+    "author": { "@type": "Person", "name": "Dan Kozlowski", "url": "https://roomtone.design/#about" },
+    "publisher": { "@type": "Organization", "name": "Roomtone", "logo": { "@type": "ImageObject", "url": "https://roomtone.design/apple-touch-icon.png" } }
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -40,7 +68,7 @@
         <a href="/#faq">Questions</a>
         <a href="/notes/">Notes</a>
       </nav>
-      <a class="btn btn--solid btn--small header-cta" href="/book.html" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
+      <a class="btn btn--solid btn--small header-cta" href="/book" aria-label="Book a listening session">Book<span class="hide-sm">&nbsp;a listening session</span></a>
     </div>
   </header>
 
@@ -84,7 +112,7 @@
           <h2>Let's listen to your room.</h2>
           <p class="lede">One session, no commitment. You'll leave knowing what I'd change.</p>
         </div>
-        <a class="btn btn--light" href="/book.html">Book a listening session</a>
+        <a class="btn btn--light" href="/book">Book a listening session</a>
       </div>
     </section>
   </main>
