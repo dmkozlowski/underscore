@@ -52,9 +52,13 @@ listens.forEach(box => {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = `btn btn--small btn--play ${isNow ? 'btn--solid' : 'btn--line'}`;
-  button.textContent = isNow ? "Listen to what's on now" : 'Listen';
+  // data-show-title puts the song in the button, for spots with several players in a row.
+  button.textContent = isNow ? "Listen to what's on now"
+    : box.hasAttribute('data-show-title') ? `Listen: ${box.dataset.title}` : 'Listen';
   // Accessible name starts with the visible text, so voice control ("click Listen") works.
-  button.setAttribute('aria-label', `${button.textContent}: ${box.dataset.title}`);
+  if (!box.hasAttribute('data-show-title')) {
+    button.setAttribute('aria-label', `${button.textContent}: ${box.dataset.title}`);
+  }
   button.addEventListener('click', () => openPlayer(box));
   box.replaceChildren(button);
 });
