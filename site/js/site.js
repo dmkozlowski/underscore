@@ -12,7 +12,7 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
 // Privacy-friendly: no cookies, no personal data. Off until a token is pasted in.
 // Get it from Cloudflare → Analytics & Logs → Web Analytics → your site → "JS snippet":
 // copy just the "token" value. Change the token here only; every page picks it up.
-const ANALYTICS_TOKEN = '';
+const ANALYTICS_TOKEN = '09d76db384c84eb9b8d3ad58d7c95f05';  // roomtone.design
 
 if (ANALYTICS_TOKEN) {
   const beacon = document.createElement('script');

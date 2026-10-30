@@ -122,23 +122,24 @@ The name appears as plain text. When it changes, find-and-replace `Roomtone` acr
 ## Open items (leave placeholders until Dan supplies the real thing)
 
 - [x] Name and domain: Roomtone, roomtone.design
-- [ ] Email and socials for Roomtone
+- [x] Email: hello@roomtone.design forwards to Dan's Gmail (Cloudflare Email Routing). It's in the home page footer.
+- [ ] Instagram: add to the footer once the account exists
 - [x] www.roomtone.design 301-redirects to roomtone.design (a Redirect Rule on the zone, in the Cloudflare dashboard, not in this repo)
 - [ ] Later: if roomtone.music is added, redirect one domain to the other the same way
 - [x] Zone hardening (Cloudflare dashboard, not this repo): Always Use HTTPS on, minimum TLS 1.2, DNSSEC on
-- [ ] DNSSEC: add the DS record at name.com (key tag 2371, algorithm 13, digest type 2; digest in Cloudflare → DNS → Settings)
-- [ ] Email: the domain publishes "sends no mail" records (SPF `v=spf1 -all`, DMARC `p=reject`, empty DKIM).
-  When setting up Email Routing or sending mail as @roomtone.design, update the SPF record and remove the empty DKIM wildcard first.
-- [ ] Turn on two-factor login for Cloudflare, name.com and GitHub; keep the name.com transfer lock on
-- [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
+- [ ] DNSSEC: on in Cloudflare but not active, because name.com doesn't take DS records for this domain. Harmless as is.
+  To finish it, move the domain to a registrar that does (check Cloudflare Registrar first) and add the DS record there.
+- [ ] Email records: Email Routing's MX, SPF (`include:_spf.mx.cloudflare.net ~all`) and DKIM, plus DMARC `p=reject`.
+  Receiving only. To *send* as hello@ (e.g. Gmail "Send mail as"), add that service to SPF and set up its DKIM first,
+  or DMARC will reject the mail.
+- [x] Two-factor login on Cloudflare, name.com and GitHub. Keep the name.com transfer lock on.
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from every page and `templates/note.html`, then submit `https://roomtone.design/sitemap.xml` in Google Search Console. Social tags, canonical URLs, structured data, robots.txt and the sitemap are done. The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
-- [ ] Optional: Cloudflare Email Routing for hello@<domain> → Gmail
-- [ ] Analytics: paste the Cloudflare Web Analytics token into `ANALYTICS_TOKEN` in `js/site.js` (it's off until then). Add a new site in Web Analytics when the real domain goes live.
+- [x] Analytics: Cloudflare Web Analytics for roomtone.design; the token is in `ANALYTICS_TOKEN` in `js/site.js`.
 
 ## Working with Dan
 
