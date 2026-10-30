@@ -44,7 +44,12 @@ document.querySelectorAll('.brief__row[data-hours]').forEach(row => {
 // nothing from Bandcamp loads for people who never press it. Loading a new
 // player removes the old one, so only one track plays at a time.
 // Bandcamp's player can't start on its own; it shows its own play button.
-const listens = document.querySelectorAll('.brief__listen[data-bandcamp-track]');
+//
+// For songs that aren't on Bandcamp, use data-apple-music instead, set to the
+// part of the song's Apple Music link after "/us/", e.g.
+// "album/all-yourn/1462929670?i=1462929680". Visitors who aren't signed in
+// to Apple Music hear a preview, not the whole song.
+const listens = document.querySelectorAll('.brief__listen[data-bandcamp-track], .brief__listen[data-apple-music]');
 
 listens.forEach(box => {
   // The "Now" row (marked above) gets the stronger, solid button.
@@ -66,13 +71,21 @@ listens.forEach(box => {
 function openPlayer(box) {
   listens.forEach(other => { if (other !== box && other.player) closePlayer(other); });
 
-  const colors = 'bgcol=f4ecdf/linkcol=2a1d16';  // paper + ink
   const iframe = document.createElement('iframe');
-  iframe.src = `https://bandcamp.com/EmbeddedPlayer/track=${box.dataset.bandcampTrack}/size=small/${colors}/transparent=true/`;
-  iframe.title = `${box.dataset.title} (Bandcamp player)`;
-  iframe.className = 'brief__player';
+  if (box.dataset.appleMusic) {
+    iframe.src = `https://embed.music.apple.com/us/${box.dataset.appleMusic}`;
+    iframe.title = `${box.dataset.title} (Apple Music player)`;
+    iframe.className = 'brief__player brief__player--apple';
+    iframe.allow = 'autoplay *; encrypted-media *; clipboard-write';
+    iframe.sandbox = 'allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation';
+  } else {
+    const colors = 'bgcol=f4ecdf/linkcol=2a1d16';  // paper + ink
+    iframe.src = `https://bandcamp.com/EmbeddedPlayer/track=${box.dataset.bandcampTrack}/size=small/${colors}/transparent=true/`;
+    iframe.title = `${box.dataset.title} (Bandcamp player)`;
+    iframe.className = 'brief__player';
+    iframe.allow = 'autoplay';
+  }
   iframe.loading = 'eager';
-  iframe.allow = 'autoplay';
 
   box.player = iframe;
   box.button = box.firstElementChild;

@@ -64,7 +64,8 @@ and nothing hides without JS or with reduced motion on. Sound brief rows take `d
 
 Sound brief tracks: wrap a plain Bandcamp link in `<div class="brief__listen" data-bandcamp-track="ID" data-title="Song by Artist">`.
 JS turns it into a Listen button that loads Bandcamp's player only on click (one plays at a time). The ID is the
-`track=NNNN` number in the track's Share/Embed code. Add `data-show-title` to put the song name on the button
+`track=NNNN` number in the track's Share/Embed code. Not on Bandcamp? Use `data-apple-music="album/<slug>/<id>?i=<id>"`
+(the part of the Apple Music link after `/us/`) instead; non-subscribers hear a preview. Add `data-show-title` to put the song name on the button
 (for notes, or anywhere several players sit together). Use streaming embeds only, never self-hosted audio files
 (licensing), unless an artist gives written permission.
 

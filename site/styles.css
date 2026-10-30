@@ -319,6 +319,7 @@ main:focus { outline: none; }
   border-color: transparent transparent transparent currentColor;
 }
 .brief__player { display: block; width: 100%; max-width: 400px; height: 42px; border: 0; }
+.brief__player--apple { max-width: 660px; height: 175px; background: transparent; }
 
 /* js/site.js marks the row that matches the visitor's time of day. */
 .brief__row.is-now { background: var(--plaster); box-shadow: inset 4px 0 0 var(--ochre); }
