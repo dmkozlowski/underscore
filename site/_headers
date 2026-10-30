@@ -17,6 +17,11 @@
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Strict-Transport-Security: max-age=31536000
 
+# Photos rarely change: let browsers keep them for 30 days instead of re-checking every visit.
+# If you replace a photo, give the new file a new name so visitors get it right away.
+/images/*
+  Cache-Control: public, max-age=2592000
+
 # Keep the workers.dev address out of search results if it's ever switched back on (it's off now).
 https://underscore.dmkozlowski.workers.dev/*
   X-Robots-Tag: noindex

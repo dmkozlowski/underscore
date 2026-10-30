@@ -31,7 +31,8 @@ const giveUp = setTimeout(showFailure, 15000);
 
 Cal.ns[NS]("on", {
   action: "linkReady",
-  callback: () => { clearTimeout(giveUp); fallback.hidden = true; }
+  // Clear the status too, so screen readers aren't left with "Loading…".
+  callback: () => { clearTimeout(giveUp); fallback.hidden = true; status.textContent = ""; }
 });
 Cal.ns[NS]("on", { action: "linkFailed", callback: showFailure });
 

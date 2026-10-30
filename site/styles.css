@@ -175,10 +175,14 @@ main:focus { outline: none; }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
 .nav a:hover { text-decoration: underline; }
 
-/* Phones: brand + Book button on top, section links in their own row below. */
+/* Tablets and phones: brand + Book button on top, section links in their own row below.
+   (Any wider and the links and the full Book button don't fit on one row.) */
+@media (max-width: 1040px) {
+  .nav { order: 3; flex-basis: 100%; margin-left: 0; gap: 0 24px; }
+}
+/* Phones: smaller wordmark, and the Book button just says "Book". */
 @media (max-width: 760px) {
   .wordmark { font-size: 24px; }
-  .nav { order: 3; flex-basis: 100%; margin-left: 0; gap: 0 24px; }
   .hide-sm { display: none; }
 }
 
@@ -393,7 +397,7 @@ main:focus { outline: none; }
 .site-footer .wordmark { color: var(--paper); font-size: 32px; align-self: flex-start; }
 .footer-brand { display: flex; flex-direction: column; gap: 16px; }
 .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; }
-.footer-links a { display: inline-block; padding-block: 8px; }
+.footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ---------- Book page ---------- */
 .book .wrap { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 64px; padding-block: 96px var(--section); }
