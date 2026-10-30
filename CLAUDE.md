@@ -1,4 +1,4 @@
-# Roomtone — business site
+# roomtone — business site
 
 Context for Claude Code. Read this before changing anything.
 
@@ -11,7 +11,8 @@ also teaches music theory at Belmont. He chooses the music for independent cafes
 no AI-generated music, with a lean toward artists local to each client. Plays through Soundtrack
 Your Brand (partner program), which bills the client separately.
 
-**"Roomtone" is the likely name (replacing the working name "Underscore") but isn't final.** Keep the name easy to swap (see below).
+**The name is "roomtone", always lowercase, even at the start of a sentence or title** (it replaced the working name "Underscore").
+Keep the name easy to swap (see below).
 The Cloudflare Worker is still named `underscore`. Renaming it creates a new Worker, so there's no need to.
 
 ## Stack (on purpose)
@@ -47,6 +48,8 @@ site/
   notes/*.html          One page per note; served without .html (e.g. /notes/your-music-is-part-of-your-brand)
 brand/
   roomtone-logo.html  Logo options for the rename (not published)
+  logo/        Final logo files: mark and mark + wordmark, SVG (text outlined, no font needed) and PNG,
+               for light and dark backgrounds, plus a 1080px Instagram profile picture
 templates/
   note.html    Starting point for a new note. Lives outside site/, so it's never published.
   drafts/      Notes in progress (also unpublished).
@@ -116,14 +119,14 @@ Pages in `notes/` use root-relative paths (`/styles.css`, `/js/site.js`). Writin
 
 ## Renaming
 
-The name appears as plain text. When it changes, find-and-replace `Roomtone` across `site/` and `templates/`
+The name appears as plain text. When it changes, find-and-replace `roomtone` across `site/` and `templates/`
 (titles, `aria-label`s, `.wordmark`, footer). Rethink the mark if the new name doesn't suit it; it's in the header of every page, `favicon.svg` and `apple-touch-icon.png`.
 
 ## Open items (leave placeholders until Dan supplies the real thing)
 
-- [x] Name and domain: Roomtone, roomtone.design
+- [x] Name and domain: roomtone (lowercase), roomtone.design
 - [x] Email: hello@roomtone.design forwards to Dan's Gmail (Cloudflare Email Routing). It's in the home page footer.
-- [ ] Instagram: add to the footer once the account exists
+- [ ] Instagram @hearroomtone: in the home footer and structured data (`sameAs`) locally; push once the account is live
 - [x] www.roomtone.design 301-redirects to roomtone.design (a Redirect Rule on the zone, in the Cloudflare dashboard, not in this repo)
 - [ ] Later: if roomtone.music is added, redirect one domain to the other the same way
 - [x] Zone hardening (Cloudflare dashboard, not this repo): Always Use HTTPS on, minimum TLS 1.2, DNSSEC on
