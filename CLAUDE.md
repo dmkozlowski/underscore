@@ -113,8 +113,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
-- [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
-- [ ] Next note: "Can I play Spotify in my cafe?" is an unpublished draft in `templates/drafts/`. Dan writes it; confirm licensing facts with Soundtrack first. When it's live, link it from "That's a different post" in `notes/your-music-is-part-of-your-brand.html`.
+- [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
