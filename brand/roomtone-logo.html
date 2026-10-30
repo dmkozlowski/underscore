@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- Logo options for the Roomtone rename. Lives outside site/, so it's never published.
+     Open it straight from Finder, or in the preview. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roomtone logo options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F4ECDF; --plaster: #E9DDC9; --line: #CDBBA0; --ink: #2A1D16;
+      --ink-soft: #6A5C50; --walnut: #6B4A32; --ochre: #C48A2C; --signal: #B3342A;
+      --serif: "Fraunces", Georgia, serif; --sans: "Hanken Grotesk", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.5; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 64px 32px; }
+    h1 { font-family: var(--serif); font-weight: 500; font-size: 44px; line-height: 1.1; }
+    h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; }
+    .intro { max-width: 40em; margin-top: 16px; color: var(--ink-soft); }
+    .option { border-top: 1px solid var(--line); margin-top: 64px; padding-top: 32px; display: grid; gap: 32px; grid-template-columns: 1fr 1.6fr; }
+    .option p { color: var(--ink-soft); margin-top: 8px; max-width: 28em; }
+    .tag { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+    .tag--pick { color: var(--paper); background: var(--ink); padding: 2px 8px; }
+    .demo { display: grid; gap: 16px; }
+    .row { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; padding: 32px; background: var(--plaster); border: 1px solid var(--line); }
+    .row--dark { background: var(--walnut); border-color: var(--walnut); color: var(--paper); }
+    .big svg { width: 128px; height: 128px; display: block; }
+    .lockup { display: flex; align-items: center; gap: 12px; }
+    .lockup svg { width: 36px; height: 36px; }
+    .wordmark { font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1; border-bottom: 3px solid currentColor; padding-bottom: 2px; }
+    .favs { display: flex; align-items: end; gap: 16px; }
+    .favs svg { display: block; }
+    .favs figure { display: grid; justify-items: center; gap: 4px; font-size: 12px; color: var(--ink-soft); }
+    .row--dark .favs figure { color: var(--plaster); }
+    .tab { display: flex; align-items: center; gap: 8px; background: #fff; padding: 8px 12px; font-size: 13px; color: #333; border: 1px solid #ddd; }
+    .ios { width: 60px; height: 60px; border-radius: 14px; overflow: hidden; }
+    .ios svg { width: 60px; height: 60px; }
+    /* Mark parts: walls follow the text color, so they flip to paper on dark. */
+    .walls { fill: currentColor; }
+    .dot { fill: var(--signal); }
+    @media (max-width: 760px) { .option { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <defs>
+      <!-- A: Floor plan. A room drawn the way an architect would, with a doorway, and the tone inside. -->
+      <symbol id="mark-a" viewBox="0 0 32 32">
+        <path class="walls" d="M2 2h28v28H25v-3.5h1.5V5.5h-21v21H17V30H2z"/>
+        <circle class="dot" cx="16" cy="15" r="4.5"/>
+      </symbol>
+      <!-- B: The room. Closed square, tone in the middle. Simplest; strongest at tiny sizes. -->
+      <symbol id="mark-b" viewBox="0 0 32 32">
+        <path class="walls" d="M2 2h28v28H2zM5.5 5.5v21h21v-21z" fill-rule="evenodd"/>
+        <circle class="dot" cx="16" cy="16" r="4.5"/>
+      </symbol>
+      <!-- C: Reflections. The tone, and the sound coming back off the walls. -->
+      <symbol id="mark-c" viewBox="0 0 32 32">
+        <path class="walls" d="M2 2h28v28H2zM4.75 4.75v22.5h22.5V4.75z M9 9h14v14H9zM11.75 11.75v8.5h8.5v-8.5z" fill-rule="evenodd"/>
+        <circle class="dot" cx="16" cy="16" r="2.75"/>
+      </symbol>
+      <!-- D: Keep the current stamp. It still works: the tone, above the floor. -->
+      <symbol id="mark-d" viewBox="0 0 32 32">
+        <circle class="dot" cx="16" cy="11" r="4"/>
+        <rect class="walls" x="7" y="19" width="18" height="4"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="wrap">
+    <h1>Roomtone: logo options</h1>
+    <p class="intro">"Room tone" is what a sound engineer records when everyone goes quiet: the sound of the room itself. Every mark here keeps the brand rules: hard edges, ink on paper, and the red dot as the only circle. The underlined Fraunces wordmark carries over unchanged.</p>
+
+    <section class="option">
+      <div>
+        <span class="tag tag--pick">My pick</span>
+        <h2>A. Floor plan</h2>
+        <p>A room drawn the way an architect draws one, doorway and all, with the tone inside. It's the "interior designer for sound" idea in one shape, and the open door says "come back." It's the only option that couldn't belong to any other business.</p>
+      </div>
+      <div class="demo" data-mark="a"></div>
+    </section>
+
+    <section class="option">
+      <div>
+        <span class="tag">Option</span>
+        <h2>B. The room</h2>
+        <p>Same idea without the door: a closed square with the tone in the middle. The boldest at 16px, but a dot in a box is a common shape, so it's the least ownable.</p>
+      </div>
+      <div class="demo" data-mark="b"></div>
+    </section>
+
+    <section class="option">
+      <div>
+        <span class="tag">Option</span>
+        <h2>C. Reflections</h2>
+        <p>The tone, and the sound coming back off the walls. It's the most literal about acoustics. The cost is that it gets busy as a favicon, and it can read as a target.</p>
+      </div>
+      <div class="demo" data-mark="c"></div>
+    </section>
+
+    <section class="option">
+      <div>
+        <span class="tag">Option</span>
+        <h2>D. Keep the stamp</h2>
+        <p>The current dot over a bar still makes sense: a tone sitting above the floor. It's the zero-work option, but the bar was really an underscore, and that story is gone.</p>
+      </div>
+      <div class="demo" data-mark="d"></div>
+    </section>
+  </div>
+
+  <template id="demo">
+    <div class="row">
+      <div class="big"><svg><use href=""/></svg></div>
+      <div class="lockup"><svg><use href=""/></svg><span class="wordmark">Roomtone</span></div>
+    </div>
+    <div class="row">
+      <div class="favs">
+        <figure><svg width="16" height="16"><rect width="16" height="16" fill="#F4ECDF"/><use href="" width="16" height="16"/></svg>16px</figure>
+        <figure><svg width="32" height="32"><rect width="32" height="32" fill="#F4ECDF"/><use href=""/></svg>32px</figure>
+        <figure><span class="ios"><svg viewBox="-4 -4 40 40"><rect x="-4" y="-4" width="40" height="40" fill="#F4ECDF"/><use href="" width="32" height="32"/></svg></span>iPhone</figure>
+      </div>
+      <div class="tab"><svg width="16" height="16"><rect width="16" height="16" fill="#F4ECDF"/><use href="" width="16" height="16"/></svg>Roomtone — Music for places…</div>
+    </div>
+    <div class="row row--dark">
+      <div class="lockup"><svg><use href=""/></svg><span class="wordmark">Roomtone</span></div>
+      <div class="big"><svg><use href=""/></svg></div>
+    </div>
+  </template>
+
+  <script>
+    // Fill each option with the same set of demos, pointed at its mark.
+    const tpl = document.getElementById('demo');
+    document.querySelectorAll('.demo').forEach(demo => {
+      const copy = tpl.content.cloneNode(true);
+      copy.querySelectorAll('use').forEach(u => u.setAttribute('href', `#mark-${demo.dataset.mark}`));
+      demo.append(copy);
+    });
+  </script>
+</body>
+</html>

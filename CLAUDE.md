@@ -1,4 +1,4 @@
-# Underscore — business site
+# Roomtone — business site
 
 Context for Claude Code. Read this before changing anything.
 
@@ -11,7 +11,8 @@ also teaches music theory at Belmont. He chooses the music for independent cafes
 no AI-generated music, with a lean toward artists local to each client. Plays through Soundtrack
 Your Brand (partner program), which bills the client separately.
 
-**"Underscore" is a working name and will probably change.** Keep the name easy to swap (see below).
+**"Roomtone" is the likely name (replacing the working name "Underscore") but isn't final.** Keep the name easy to swap (see below).
+The Cloudflare Worker and its workers.dev address are still named `underscore`; renaming the Worker creates a new one, so leave it until the domain is set.
 
 ## Stack (on purpose)
 
@@ -35,10 +36,12 @@ site/
   js/site.js   Shared JS: footer year, analytics, scroll reveals, sound brief "Now" marker + Bandcamp players
   js/book.js   Cal.com embed + fallback handling
   _headers     Cloudflare security headers (CSP etc.). Not served publicly.
-  favicon.svg  Dot-over-bar stamp
-  apple-touch-icon.png  180px stamp for iPhone home screens (regenerate if the stamp changes)
+  favicon.svg  The floor-plan mark
+  apple-touch-icon.png  180px mark for iPhone home screens (regenerate if the mark changes)
   notes/index.html      Notes list (newest first)
   notes/*.html          One page per note; served without .html (e.g. /notes/your-music-is-part-of-your-brand)
+brand/
+  roomtone-logo.html  Logo options for the rename (not published)
 templates/
   note.html    Starting point for a new note. Lives outside site/, so it's never published.
   drafts/      Notes in progress (also unpublished).
@@ -83,8 +86,8 @@ walnut `#6B4A32` · ochre `#C48A2C` · signal `#B3342A`
 - Imagery: people listening, never posing. Warm light, film grain, wood, knit, plaster.
   Photos are placeholders (`.photo` boxes) until real photography exists. Drop an `<img>` inside `.photo` and it fills the box.
 
-Marks: underlined wordmark (`.wordmark`) + dot-over-bar stamp (`.stamp`). Only the stamp is tied to
-the current name; the underlined-wordmark layout survives a rename.
+Marks: underlined wordmark (`.wordmark`) + the mark (`.stamp`, an inline SVG in each page's header): a floor plan of a
+room with an off-center doorway, and the red dot (the tone) inside. Options considered are in `brand/roomtone-logo.html`.
 
 ## Voice
 
@@ -106,8 +109,8 @@ Pages in `notes/` use root-relative paths (`/styles.css`, `/js/site.js`). Writin
 
 ## Renaming
 
-The name appears as plain text. When it changes, find-and-replace `Underscore` across `site/` and `templates/`
-(titles, `aria-label`s, `.wordmark`, footer). Rethink the stamp if the new name doesn't suit it.
+The name appears as plain text. When it changes, find-and-replace `Roomtone` across `site/` and `templates/`
+(titles, `aria-label`s, `.wordmark`, footer). Rethink the mark if the new name doesn't suit it; it's in the header of every page, `favicon.svg` and `apple-touch-icon.png`.
 
 ## Open items (leave placeholders until Dan supplies the real thing)
 

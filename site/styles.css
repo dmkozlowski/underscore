@@ -1,4 +1,4 @@
-/* Underscore — site styles
+/* Roomtone — site styles
    Brand rules (from the one-sheet):
    - Hard edges, no border-radius (the stamp dot is the one circle).
    - Everything sits on a 32px grid; 8/16 are allowed as half-steps inside components.
@@ -157,9 +157,10 @@ main:focus { outline: none; }
   min-height: 44px;
   text-decoration: none;
 }
-.stamp { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.stamp__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--signal); }
-.stamp__bar { width: 28px; height: 5px; background: var(--ink); }
+/* The mark: a floor plan of a room, doorway and all, with the tone (red dot) inside. */
+.stamp { display: block; flex: none; width: 32px; height: 32px; }
+.stamp__walls { fill: var(--ink); }
+.stamp__dot { fill: var(--signal); }
 .wordmark {
   font-family: var(--serif);
   font-weight: 500;
