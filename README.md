@@ -22,7 +22,7 @@ The site is a Cloudflare Worker named `underscore` that serves the `site/` folde
 Pushing to `main` on GitHub deploys automatically (Workers Builds). Check progress in the dashboard:
 Workers & Pages → underscore → Deployments.
 
-Live preview: https://underscore.dmkozlowski.workers.dev. Add a custom domain later under the Worker's
-Settings → Domains & Routes.
+Domain: https://roomtone.design (and www), attached through `routes` in `wrangler.jsonc`.
+The workers.dev address (https://underscore.dmkozlowski.workers.dev) still works and stays out of search results.
 
 See `CLAUDE.md` for brand rules, voice and open items.

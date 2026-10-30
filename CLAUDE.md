@@ -19,6 +19,8 @@ The Cloudflare Worker and its workers.dev address are still named `underscore`; 
 - Plain static HTML + one CSS file. No framework, no build step, no npm. Keep it that way unless Dan asks.
 - Hosting: **Cloudflare Workers (static assets)**, as its own Worker named `underscore` (separate from Dan's personal site).
   Deploys from GitHub `main` via Workers Builds. `wrangler.jsonc` at the repo root points it at `site/`; no build step.
+  Domain: **roomtone.design** (registered at name.com, nameservers on Cloudflare; plan to add roomtone.music later).
+  `routes` in `wrangler.jsonc` attach it (and www) to the Worker on deploy.
   Live preview: https://underscore.dmkozlowski.workers.dev
 - Booking: **Cal.com** inline embed on `book.html`
   → https://cal.com/dmkozlowski/listening-session
@@ -114,7 +116,9 @@ The name appears as plain text. When it changes, find-and-replace `Roomtone` acr
 
 ## Open items (leave placeholders until Dan supplies the real thing)
 
-- [ ] Final business name → then domain, email, socials (all on hold until the name settles)
+- [x] Name and domain: Roomtone, roomtone.design
+- [ ] Email and socials for Roomtone
+- [ ] Later: redirect www to the bare domain (Cloudflare redirect rule); if roomtone.music is added, redirect one domain to the other
 - [ ] Real email + Instagram in the footer (`[EMAIL]`, `[INSTAGRAM]`)
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
