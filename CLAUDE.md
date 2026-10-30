@@ -38,9 +38,10 @@ site/
   favicon.svg  Dot-over-bar stamp
   apple-touch-icon.png  180px stamp for iPhone home screens (regenerate if the stamp changes)
   notes/index.html      Notes list (newest first)
-  notes/*.html          One page per note; served without .html (e.g. /notes/can-i-play-spotify-in-my-cafe)
+  notes/*.html          One page per note; served without .html (e.g. /notes/your-music-is-part-of-your-brand)
 templates/
   note.html    Starting point for a new note. Lives outside site/, so it's never published.
+  drafts/      Notes in progress (also unpublished).
 ```
 
 ## Security and accessibility rules
@@ -113,7 +114,7 @@ The name appears as plain text. When it changes, find-and-replace `Underscore` a
 - [x] Sample sound brief: tracks, reasons and sample client (a coffee and wine bar) are in
 - [x] Photography: hero (Unsplash cafe) and About (Dan) are in `site/images/`. Swap for commissioned shots later if wanted.
 - [ ] Confirm with Soundtrack: AI-track filtering, licensing wording (FAQ answers are marked with TODO comments)
-- [ ] First note (draft at `site/notes/can-i-play-spotify-in-my-cafe.html`): Dan writes it; confirm licensing facts with Soundtrack first. Also fill its one-line summary on `notes/index.html` and `index.html`.
+- [ ] Next note: "Can I play Spotify in my cafe?" is an unpublished draft in `templates/drafts/`. Dan writes it; confirm licensing facts with Soundtrack first. When it's live, link it from "That's a different post" in `notes/your-music-is-part-of-your-brand.html`.
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [ ] At launch: remove `<meta name="robots" content="noindex, nofollow">` from both pages, add OG/social tags (404 page is done). The workers.dev address stays noindexed via `_headers`.
 - [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
