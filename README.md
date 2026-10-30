@@ -23,6 +23,6 @@ Pushing to `main` on GitHub deploys automatically (Workers Builds). Check progre
 Workers & Pages → underscore → Deployments.
 
 Domain: https://roomtone.design (and www), attached through `routes` in `wrangler.jsonc`.
-The workers.dev address (https://underscore.dmkozlowski.workers.dev) still works and stays out of search results.
+The workers.dev address is off, so the site only lives at roomtone.design.
 
 See `CLAUDE.md` for brand rules, voice and open items.

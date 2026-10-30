@@ -9,7 +9,7 @@
     "not_found_handling": "404-page"
   },
   // The real domain. On deploy, Cloudflare creates the DNS records and HTTPS
-  // certificate for each one. The workers.dev address keeps working too.
+  // certificate for each one. Having routes turns the workers.dev address off.
   "routes": [
     { "pattern": "roomtone.design", "custom_domain": true },
     { "pattern": "www.roomtone.design", "custom_domain": true }

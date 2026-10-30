@@ -17,6 +17,6 @@
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Strict-Transport-Security: max-age=31536000
 
-# Keep the workers.dev address out of search results for good, even after launch on the real domain.
+# Keep the workers.dev address out of search results if it's ever switched back on (it's off now).
 https://underscore.dmkozlowski.workers.dev/*
   X-Robots-Tag: noindex

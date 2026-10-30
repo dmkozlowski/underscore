@@ -12,7 +12,7 @@ no AI-generated music, with a lean toward artists local to each client. Plays th
 Your Brand (partner program), which bills the client separately.
 
 **"Roomtone" is the likely name (replacing the working name "Underscore") but isn't final.** Keep the name easy to swap (see below).
-The Cloudflare Worker and its workers.dev address are still named `underscore`; renaming the Worker creates a new one, so leave it until the domain is set.
+The Cloudflare Worker is still named `underscore`. Renaming it creates a new Worker, so there's no need to.
 
 ## Stack (on purpose)
 
@@ -21,7 +21,7 @@ The Cloudflare Worker and its workers.dev address are still named `underscore`; 
   Deploys from GitHub `main` via Workers Builds. `wrangler.jsonc` at the repo root points it at `site/`; no build step.
   Domain: **roomtone.design** (registered at name.com, nameservers on Cloudflare; plan to add roomtone.music later).
   `routes` in `wrangler.jsonc` attach it (and www) to the Worker on deploy.
-  Live preview: https://underscore.dmkozlowski.workers.dev
+  The workers.dev address is off (Wrangler turns it off once `routes` exist), so the site only lives at roomtone.design.
 - Booking: **Cal.com** inline embed on `book.html`
   → https://cal.com/dmkozlowski/listening-session
   Intake questions live in Cal.com's booking form, not on the site.
@@ -138,8 +138,6 @@ The name appears as plain text. When it changes, find-and-replace `Roomtone` acr
 - [ ] Confirm with Soundtrack (meeting the week of Nov 2, 2026): licensing wording (live FAQ answer, marked with a TODO comment), and what the license covers for live music, DJs and admission-charge venues (stated as "usually" in `notes/can-i-use-spotify-for-my-business.html`)
 - [ ] Pricing is paused on purpose (owner conversations first). Don't invent prices.
 - [x] Launched Oct 30, 2026: noindex removed (the 404 page keeps it). Submit `https://roomtone.design/sitemap.xml` in Google Search Console.
-  The workers.dev address stays noindexed via `_headers`.
-- [ ] Optional: Cloudflare Access to password-protect the workers.dev preview before launch
 - [x] Analytics: Cloudflare Web Analytics for roomtone.design; the token is in `ANALYTICS_TOKEN` in `js/site.js`.
 
 ## Working with Dan
